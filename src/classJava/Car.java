@@ -1,5 +1,7 @@
 package classJava;
 
+import java.util.Random;
+
 public class Car {
     public Double value;
     public String model;
@@ -38,5 +40,11 @@ public class Car {
         this.isEfficientGearbox=isEfficientGearbox;
         this.isTruck=isTruck;
         this.cargoSpace=cargoSpace;
+    }
+    public static void generateCar() {
+
+    }
+    public static int randomNumber(int minimum, int maximum){
+        return (int) ((Math.random() * (maximum - minimum)) + minimum);
     }
 }
