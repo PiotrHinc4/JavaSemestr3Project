@@ -1,3 +1,5 @@
+package classJava;
+
 public class Car {
     public Double value;
     public String model;
