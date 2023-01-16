@@ -1,7 +1,6 @@
 package classJava;
 
 import java.io.*;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Car {
@@ -54,13 +53,14 @@ public class Car {
         model = words[0];
         value = randomNumber(Integer.parseInt(words[1]),(Integer.parseInt(words[2])));
         segment = words[3];
-        cargoSpace=Double.parseDouble(words[4]);
-        if (cargoSpace>0) {
-            isTruck=true;
+        isTruck=Boolean.parseBoolean(words[4]);
+        cargoSpace=Double.parseDouble(words[5]);
+        if (isTruck=true) {
+            cargoSpace=Double.parseDouble((words[5]));
         } else {
-            isTruck=false;
+            cargoSpace=0.0;
         }
-        System.out.println(model + " " + value + " " + segment + " " + isTruck + " " + cargoSpace);
+        System.out.println(model + "," + value + "," + segment + "," + isTruck + "," + cargoSpace);
     }
     public static int countLineNumberReader(String fileName) {
         File file = new File(fileName);
