@@ -45,9 +45,11 @@ public class Car {
     }
     public static void generateCar() throws FileNotFoundException{
         File file = new File(DEFAULT_FILE_CARS_TYPES);
-        System.out.println(countLineNumberReader(DEFAULT_FILE_CARS_TYPES));
         Scanner scanner = new Scanner(file);
         String line = scanner.nextLine();
+        for (int i=1;i<=randomNumber(0,countLineNumberReader(DEFAULT_FILE_CARS_TYPES));i++){
+            line = scanner.nextLine();
+        }
         String[] words = line.split(",");
         model = words[0];
         value = randomNumber(Integer.parseInt(words[1]),(Integer.parseInt(words[2])));
@@ -60,9 +62,9 @@ public class Car {
         }
         System.out.println(model + " " + value + " " + segment + " " + isTruck + " " + cargoSpace);
     }
-    public static long countLineNumberReader(String fileName) {
+    public static int countLineNumberReader(String fileName) {
         File file = new File(fileName);
-        long lines = 0;
+        int lines = 0;
         try (LineNumberReader lnr = new LineNumberReader(new FileReader(file))) {
             while (lnr.readLine() != null) ;
             lines = lnr.getLineNumber();
