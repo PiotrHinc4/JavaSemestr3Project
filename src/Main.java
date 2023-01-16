@@ -1,8 +1,10 @@
 import classJava.*;
+
+import java.io.FileNotFoundException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         //Menu.mainMenu();
-        //Car.generateCar();
-        System.out.println(Car.randomNumber(1,1000));
+        Car.generateCar();
     }
 }

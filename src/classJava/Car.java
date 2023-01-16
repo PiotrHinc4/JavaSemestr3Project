@@ -1,22 +1,25 @@
 package classJava;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Car {
-    public Double value;
-    public String model;
-    public Double distanceTraveled;
-    public String color;
-    public String segment;
-    public Boolean isEfficientBrakes;
-    public Boolean isEfficientSuspension;
-    public Boolean isEfficientEngine;
-    public Boolean isEfficientBodywork;
-    public Boolean isEfficientGearbox;
-    public Boolean isTruck;
-    public Double cargoSpace;
+    public static Integer value;
+    public static String model;
+    public static Double distanceTraveled;
+    public static String color;
+    public static String segment;
+    public static Boolean isEfficientBrakes;
+    public static Boolean isEfficientSuspension;
+    public static Boolean isEfficientEngine;
+    public static Boolean isEfficientBodywork;
+    public static Boolean isEfficientGearbox;
+    public static Boolean isTruck;
+    public static Double cargoSpace;
 
-    public Car(Double value,
+    public Car(Integer value,
                String model,
                Double distanceTraveled,
                String color,
@@ -41,8 +44,21 @@ public class Car {
         this.isTruck=isTruck;
         this.cargoSpace=cargoSpace;
     }
-    public static void generateCar() {
-
+    public static void generateCar() throws FileNotFoundException{
+        File file = new File("src/files/CarsTypes.txt");
+        Scanner scanner = new Scanner(file);
+        String line = scanner.nextLine();
+        String[] words = line.split(",");
+        model = words[0];
+        value = randomNumber(Integer.parseInt(words[1]),(Integer.parseInt(words[2])));
+        segment = words[3];
+        cargoSpace=Double.parseDouble(words[4]);
+        if (cargoSpace>0) {
+            isTruck=true;
+        } else {
+            isTruck=false;
+        }
+        System.out.println(model + " " + value + " " + segment + " " + isTruck + " " + cargoSpace);
     }
     public static int randomNumber(int minimum, int maximum){
         return (int) ((Math.random() * (maximum - minimum)) + minimum);

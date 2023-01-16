@@ -1,0 +1,2 @@
+Volkswagen_Passat,30000,50000,standard,0.0
+Renault_Master,50000,75000,standard,10.0
