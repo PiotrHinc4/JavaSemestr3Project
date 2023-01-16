@@ -1,11 +1,11 @@
 package classJava;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Car {
+    private static final String DEFAULT_FILE_CARS_TYPES = "src/files/CarsTypes.txt";
     public static Integer value;
     public static String model;
     public static Double distanceTraveled;
@@ -18,7 +18,6 @@ public class Car {
     public static Boolean isEfficientGearbox;
     public static Boolean isTruck;
     public static Double cargoSpace;
-
     public Car(Integer value,
                String model,
                Double distanceTraveled,
@@ -45,7 +44,8 @@ public class Car {
         this.cargoSpace=cargoSpace;
     }
     public static void generateCar() throws FileNotFoundException{
-        File file = new File("src/files/CarsTypes.txt");
+        File file = new File(DEFAULT_FILE_CARS_TYPES);
+        System.out.println(countLineNumberReader(DEFAULT_FILE_CARS_TYPES));
         Scanner scanner = new Scanner(file);
         String line = scanner.nextLine();
         String[] words = line.split(",");
@@ -59,6 +59,17 @@ public class Car {
             isTruck=false;
         }
         System.out.println(model + " " + value + " " + segment + " " + isTruck + " " + cargoSpace);
+    }
+    public static long countLineNumberReader(String fileName) {
+        File file = new File(fileName);
+        long lines = 0;
+        try (LineNumberReader lnr = new LineNumberReader(new FileReader(file))) {
+            while (lnr.readLine() != null) ;
+            lines = lnr.getLineNumber();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return lines;
     }
     public static int randomNumber(int minimum, int maximum){
         return (int) ((Math.random() * (maximum - minimum)) + minimum);
