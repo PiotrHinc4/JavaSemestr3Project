@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Car {
-    private static final String DEFAULT_FILE_CARS_TYPES = "src/files/CarsTypes.txt";
+    private static final String DEFAULT_FILE_CARSTYPES = "src/files/CarsTypes.txt";
     public static Integer value;
     public static String model;
     public static Double distanceTraveled;
@@ -43,15 +43,16 @@ public class Car {
         this.cargoSpace=cargoSpace;
     }
     public static void generateCar() throws FileNotFoundException{
-        File file = new File(DEFAULT_FILE_CARS_TYPES);
+        File file = new File(DEFAULT_FILE_CARSTYPES);
         Scanner scanner = new Scanner(file);
         String line = scanner.nextLine();
-        for (int i=1;i<=randomNumber(0,countLineNumberReader(DEFAULT_FILE_CARS_TYPES));i++){
+        for (int i=1;i<=randomNumber(0,countLineNumberReader(DEFAULT_FILE_CARSTYPES));i++){
             line = scanner.nextLine();
         }
         String[] words = line.split(",");
         model = words[0];
         value = randomNumber(Integer.parseInt(words[1]),(Integer.parseInt(words[2])));
+        //System.out.println(value);
         segment = words[3];
         isTruck=Boolean.parseBoolean(words[4]);
         cargoSpace=Double.parseDouble(words[5]);
@@ -60,7 +61,33 @@ public class Car {
         } else {
             cargoSpace=0.0;
         }
-        System.out.println(model + "," + value + "," + segment + "," + isTruck + "," + cargoSpace);
+
+        isEfficientBrakes=checkPart(95);
+        isEfficientSuspension=checkPart(90);
+        isEfficientEngine=checkPart(50);
+        isEfficientBodywork=checkPart(25);
+        isEfficientGearbox=checkPart(25);
+
+        System.out.println(model+","+value+","+segment+","+isTruck+","+cargoSpace
+                +","+isEfficientBrakes+","+isEfficientSuspension+","+
+                isEfficientEngine+","+isEfficientBodywork+","+
+                isEfficientGearbox);
+    }
+    public static boolean checkPart(int percent){
+        if(isPartDamage()==true){
+            value=value*percent/100;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public static boolean isPartDamage(){
+        int chance = randomNumber(1,12);
+        if(chance%4==0) {
+            return true;
+        } else {
+            return false;
+        }
     }
     public static int countLineNumberReader(String fileName) {
         File file = new File(fileName);
