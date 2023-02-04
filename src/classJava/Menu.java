@@ -18,12 +18,62 @@ public class Menu {
             System.out.println("YOU DO THIS IN " + Player.round + " ROUNDS!!!");
         } else {
             System.out.println("Enter the appropriate command number:");
-            System.out.println("[1] Base of cars to buy");
-            System.out.println("[0] Exiting the game");
+            System.out.println("[1] Show base of cars to buy");
+            System.out.println("[2] Buy a car (in progress)");
+            System.out.println("[3] Show owned cars (in progress)");
+            System.out.println("[4] Repair the car (in progress)");
+            System.out.println("[5] Show potential customers (in progress)");
+            System.out.println("[6] Sell the car (in progress)");
+            System.out.println("[7] Buy advertisement (in progress)");
+            System.out.println("[8] Check bank account (in progress)");
+            System.out.println("[9] Check transaction history (in progress)");
+            System.out.println("[10] Check history of car repair (in progress)");
+            System.out.println("[11] Check repair and cleaning costs (in progress)");
+            System.out.println("[0] Exit the game");
             selectedOption=getSelectedOption();
             switch (selectedOption) {
                 case "1":
                     carsToBuy();
+                    break;
+                case "2":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "3":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "4":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "5":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "6":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "7":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "8":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "9":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "10":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
+                    break;
+                case "11":
+                    System.out.println("This part is in progress. Back to the main menu");
+                    mainMenu();
                     break;
                 case "0":
                     leavingGame();
