@@ -17,11 +17,10 @@ public class Menu {
             System.out.println("YOU WIN!!!!!");
             System.out.println("YOU DO THIS IN " + Player.round + " ROUNDS!!!");
         } else {
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Enter the appropriate command number:");
             System.out.println("[1] Base of cars to buy");
             System.out.println("[0] Exiting the game");
-            selectedOption = scanner.next();
+            selectedOption=getSelectedOption();
             switch (selectedOption) {
                 case "1":
                     carsToBuy();
@@ -34,6 +33,12 @@ public class Menu {
                     mainMenu();
             }
         }
+    }
+    static String getSelectedOption(){
+        String messengeFromUser;
+        Scanner scanner = new Scanner(System.in);
+        messengeFromUser = scanner.next();
+        return messengeFromUser;
     }
     static void carsToBuy(){
         System.out.println("Cars in the shop:");
@@ -74,13 +79,18 @@ public class Menu {
             }
             System.out.println(line);
         }
-        System.out.println("[0] Back to menu");
+        System.out.println("Press \"0\" to back to menu");
+        if(getSelectedOption().equals("0")){
+            mainMenu();
+        } else {
+            System.out.println("I don't understand. Try again");
+            carsToBuy();
+        }
     }
 
     private static void leavingGame() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Are you sure you want to leave the game? [Yes/No]");
-        selectedOption=scanner.next();
+        selectedOption=getSelectedOption();
         if (selectedOption.equals("Yes")) {
             System.out.println("Exiting the game. See you later");
         } else if (selectedOption.equals("No")) {

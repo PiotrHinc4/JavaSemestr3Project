@@ -2,7 +2,7 @@ package classJava;
 
 public class Player {
     private static final int DEFAULT_MINIMUM_BASE_CASH = 10000;
-    private static final int DEFAULT_MAXIMUM_BASE_CASH = 50000;
+    private static final int DEFAULT_MAXIMUM_BASE_CASH = 20000;
     public static Integer cash;
     public static Integer baseCash;
     public static Integer round;
