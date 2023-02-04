@@ -6,10 +6,10 @@ import java.util.Scanner;
 public class Car {
     private static final String DEFAULT_FILE_CARSTYPES = "src/files/CarsTypes.txt";
     public static final int DEFAULT_NUMBER_OF_CARS_TO_BUY = 15;
-    private static final int DEFAULT_AMOUNT_OF_INFORMATION_ABOUT_THE_CAR = 10;
+    private static final int DEFAULT_AMOUNT_OF_INFORMATION_ABOUT_THE_CAR = 12;
     public static Integer value;
     public static String model;
-    public static Double distanceTraveled;
+    public static Integer distanceTraveled;
     public static String color;
     public static String segment;
     public static Boolean isEfficientBrakes;
@@ -22,7 +22,7 @@ public class Car {
     public static String[][] carsShop = new String[DEFAULT_NUMBER_OF_CARS_TO_BUY][DEFAULT_AMOUNT_OF_INFORMATION_ABOUT_THE_CAR];
     public Car(Integer value,
                String model,
-               Double distanceTraveled,
+               Integer distanceTraveled,
                String color,
                String segment,
                Boolean isEfficientBrakes,
@@ -70,10 +70,13 @@ public class Car {
         isEfficientBodywork=checkPart(25);
         isEfficientGearbox=checkPart(25);
 
+        distanceTraveled=randomNumber(1000,100000);
+        color=randomColor();
+
         return model+","+value+","+segment+","+isTruck+","+cargoSpace
                 +","+isEfficientBrakes+","+isEfficientSuspension+","+
                 isEfficientEngine+","+isEfficientBodywork+","+
-                isEfficientGearbox;
+                isEfficientGearbox+","+distanceTraveled+","+color;
     }
     public static boolean checkPart(int percent){
         if(isPartDamage()==true){
@@ -90,6 +93,31 @@ public class Car {
         } else {
             return false;
         }
+    }
+    public static String randomColor(){
+        int number=randomNumber(0,10);
+        String color = null;
+        switch (number){
+            case 0,1,2,3,4,5:
+                color = "black";
+                break;
+            case 6:
+                color = "silver";
+                break;
+            case 7:
+                color = "white";
+                break;
+            case 8:
+                color = "red";
+                break;
+            case 9:
+                color = "purple";
+                break;
+            case 10:
+                color = "blue";
+                break;
+        }
+        return color;
     }
     public static int countLineNumberReader(String fileName) {
         File file = new File(fileName);

@@ -35,6 +35,8 @@ public class Menu {
             String line = "["+(x+1)+"] ";
             line=line+"Model: "+carsShop[x][0]+";";
             line=line+"\tValue: "+carsShop[x][1]+";";
+            line=line+"\tColor: "+carsShop[x][11]+";";
+            line=line+"\tTraveled distance: "+carsShop[x][10];
             if(carsShop[x][3]=="true"){
                 line=line+"\tTruck; \tCargoSpace: "+ carsShop[x][4]+";";
             } else {
