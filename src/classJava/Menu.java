@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import static classJava.Car.DEFAULT_NUMBER_OF_CARS_TO_BUY;
 import static classJava.Car.carsShop;
+import static classJava.Player.isWin;
 
 public class Menu {
 
@@ -11,22 +12,27 @@ public class Menu {
     public Menu(String selectedOption) {
         this.selectedOption=selectedOption;
     }
-    public static void mainMenu(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the appropriate command number:");
-        System.out.println("[1] Base of cars to buy");
-        System.out.println("[0] Exiting the game");
-        selectedOption=scanner.next();
-        switch(selectedOption){
-            case "1":
-                carsToBuy();
-                break;
-            case "0":
-                leavingGame();
-                break;
-            default:
-                System.out.println("Not found selected option. Try again");
-                mainMenu();
+    public static void mainMenu() {
+        if (isWin()) {
+            System.out.println("YOU WIN!!!!!");
+            System.out.println("YOU DO THIS IN " + Player.round + " ROUNDS!!!");
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter the appropriate command number:");
+            System.out.println("[1] Base of cars to buy");
+            System.out.println("[0] Exiting the game");
+            selectedOption = scanner.next();
+            switch (selectedOption) {
+                case "1":
+                    carsToBuy();
+                    break;
+                case "0":
+                    leavingGame();
+                    break;
+                default:
+                    System.out.println("Not found selected option. Try again");
+                    mainMenu();
+            }
         }
     }
     static void carsToBuy(){
@@ -68,6 +74,7 @@ public class Menu {
             }
             System.out.println(line);
         }
+        System.out.println("[0] Back to menu");
     }
 
     private static void leavingGame() {

@@ -7,6 +7,7 @@ public class Main {
         for(int i=0;i<DEFAULT_NUMBER_OF_CARS_TO_BUY;i++){
             addCarToShop();
         }
+        Player.setBaseCash();
 
         Menu.mainMenu();
     }
