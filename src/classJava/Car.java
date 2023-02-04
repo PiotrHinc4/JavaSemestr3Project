@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 public class Car {
     private static final String DEFAULT_FILE_CARSTYPES = "src/files/CarsTypes.txt";
+    public static final int DEFAULT_NUMBER_OF_CARS_TO_BUY = 15;
+    private static final int DEFAULT_AMOUNT_OF_INFORMATION_ABOUT_THE_CAR = 10;
     public static Integer value;
     public static String model;
     public static Double distanceTraveled;
@@ -17,6 +19,7 @@ public class Car {
     public static Boolean isEfficientGearbox;
     public static Boolean isTruck;
     public static Double cargoSpace;
+    public static String[][] carsShop = new String[DEFAULT_NUMBER_OF_CARS_TO_BUY][DEFAULT_AMOUNT_OF_INFORMATION_ABOUT_THE_CAR];
     public Car(Integer value,
                String model,
                Double distanceTraveled,
@@ -42,7 +45,7 @@ public class Car {
         this.isTruck=isTruck;
         this.cargoSpace=cargoSpace;
     }
-    public static void generateCar() throws FileNotFoundException{
+    public static String generateCar() throws FileNotFoundException{
         File file = new File(DEFAULT_FILE_CARSTYPES);
         Scanner scanner = new Scanner(file);
         String line = scanner.nextLine();
@@ -52,7 +55,6 @@ public class Car {
         String[] words = line.split(",");
         model = words[0];
         value = randomNumber(Integer.parseInt(words[1]),(Integer.parseInt(words[2])));
-        //System.out.println(value);
         segment = words[3];
         isTruck=Boolean.parseBoolean(words[4]);
         cargoSpace=Double.parseDouble(words[5]);
@@ -68,10 +70,10 @@ public class Car {
         isEfficientBodywork=checkPart(25);
         isEfficientGearbox=checkPart(25);
 
-        System.out.println(model+","+value+","+segment+","+isTruck+","+cargoSpace
+        return model+","+value+","+segment+","+isTruck+","+cargoSpace
                 +","+isEfficientBrakes+","+isEfficientSuspension+","+
                 isEfficientEngine+","+isEfficientBodywork+","+
-                isEfficientGearbox);
+                isEfficientGearbox;
     }
     public static boolean checkPart(int percent){
         if(isPartDamage()==true){
@@ -102,5 +104,17 @@ public class Car {
     }
     public static int randomNumber(int minimum, int maximum){
         return (int) ((Math.random() * (maximum - minimum)) + minimum);
+    }
+    public static void addCarToShop() throws FileNotFoundException {
+        for(int x=0;x<DEFAULT_NUMBER_OF_CARS_TO_BUY;x++){
+            if(carsShop[x][0]==null) {
+                String[] car = generateCar().split(",");
+                for(int y=0;y<DEFAULT_AMOUNT_OF_INFORMATION_ABOUT_THE_CAR;y++){
+                    carsShop[x][y]=car[y];
+                }
+                System.out.println(carsShop[x][0]);
+                break;
+            }
+        }
     }
 }
