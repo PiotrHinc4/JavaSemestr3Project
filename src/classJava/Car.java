@@ -112,7 +112,6 @@ public class Car {
                 for(int y=0;y<DEFAULT_AMOUNT_OF_INFORMATION_ABOUT_THE_CAR;y++){
                     carsShop[x][y]=car[y];
                 }
-                System.out.println(carsShop[x][0]);
                 break;
             }
         }

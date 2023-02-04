@@ -1,5 +1,9 @@
 package classJava;
+import java.util.Objects;
 import java.util.Scanner;
+
+import static classJava.Car.DEFAULT_NUMBER_OF_CARS_TO_BUY;
+import static classJava.Car.carsShop;
 
 public class Menu {
 
@@ -15,8 +19,7 @@ public class Menu {
         selectedOption=scanner.next();
         switch(selectedOption){
             case "1":
-                System.out.println("1st option");
-                Menu.mainMenu();
+                carsToBuy();
                 break;
             case "0":
                 leavingGame();
@@ -24,6 +27,44 @@ public class Menu {
             default:
                 System.out.println("Not found selected option. Try again");
                 mainMenu();
+        }
+    }
+    static void carsToBuy(){
+        System.out.println("Cars in the shop:");
+        for(int x=0;x<DEFAULT_NUMBER_OF_CARS_TO_BUY;x++){
+            String line = "["+(x+1)+"] ";
+            line=line+"Model: "+carsShop[x][0]+";";
+            line=line+"\tValue: "+carsShop[x][1]+";";
+            if(carsShop[x][3]=="true"){
+                line=line+"\tTruck; \tCargoSpace: "+ carsShop[x][4]+";";
+            } else {
+                line=line+"\tPersonal car;";
+            }
+            line=line+"\tSegement: "+carsShop[x][2]+";";
+
+            line=line+"\tDamaged: ";
+            if(Objects.equals(carsShop[x][5], "false") && Objects.equals(carsShop[x][6], "false") && Objects.equals(carsShop[x][7], "false") && Objects.equals(carsShop[x][8], "false") && Objects.equals(carsShop[x][9], "false")){
+                line=line+"none";
+            } else if (Objects.equals(carsShop[x][5], "true") && Objects.equals(carsShop[x][6], "true") && Objects.equals(carsShop[x][7], "true") && Objects.equals(carsShop[x][8], "true") && Objects.equals(carsShop[x][9], "true")){
+                line=line+"all";
+            } else {
+                if (Objects.equals(carsShop[x][5], "true")) {
+                    line = line + "brakes, ";
+                }
+                if (Objects.equals(carsShop[x][6], "true")) {
+                    line = line + "suspension, ";
+                }
+                if (Objects.equals(carsShop[x][7], "true")) {
+                    line = line + "engine, ";
+                }
+                if (Objects.equals(carsShop[x][8], "true")) {
+                    line = line + "bodywork, ";
+                }
+                if (Objects.equals(carsShop[x][9], "true")) {
+                    line = line + "gearbox, ";
+                }
+            }
+            System.out.println(line);
         }
     }
 
