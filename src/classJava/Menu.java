@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import static classJava.Car.DEFAULT_NUMBER_OF_CARS_TO_BUY;
 import static classJava.Car.carsShop;
-import static classJava.Player.isWin;
+import static classJava.Player.*;
 
 public class Menu {
 
@@ -25,7 +25,7 @@ public class Menu {
             System.out.println("[5] Show potential customers (in progress)");
             System.out.println("[6] Sell the car (in progress)");
             System.out.println("[7] Buy advertisement (in progress)");
-            System.out.println("[8] Check bank account (in progress)");
+            System.out.println("[8] Check bank account");
             System.out.println("[9] Check transaction history (in progress)");
             System.out.println("[10] Check history of car repair (in progress)");
             System.out.println("[11] Check repair and cleaning costs (in progress)");
@@ -60,8 +60,7 @@ public class Menu {
                     mainMenu();
                     break;
                 case "8":
-                    System.out.println("This part is in progress. Back to the main menu");
-                    mainMenu();
+                    checkBankAccount();
                     break;
                 case "9":
                     System.out.println("This part is in progress. Back to the main menu");
@@ -90,6 +89,7 @@ public class Menu {
         messengeFromUser = scanner.next();
         return messengeFromUser;
     }
+    //option "1"
     static void carsToBuy(){
         System.out.println("Cars in the shop:");
         for(int x=0;x<DEFAULT_NUMBER_OF_CARS_TO_BUY;x++){
@@ -129,7 +129,7 @@ public class Menu {
             }
             System.out.println(line);
         }
-        System.out.println("Press \"0\" to back to menu");
+        System.out.println("Write \"0\" to back to menu");
         if(getSelectedOption().equals("0")){
             mainMenu();
         } else {
@@ -137,7 +137,20 @@ public class Menu {
             carsToBuy();
         }
     }
-
+    //option "8"
+    static void checkBankAccount() {
+        System.out.println("You started game with "+baseCash+"$");
+        System.out.println("You have now "+cash+"$");
+        System.out.println("You need "+(2*baseCash-cash)+"$ more to complete the game");
+        System.out.println("Write \"0\" to back to menu");
+        if(getSelectedOption().equals("0")){
+            mainMenu();
+        } else {
+            System.out.println("I don't understand. Try again");
+            checkBankAccount();
+        }
+    }
+    //option "0"
     private static void leavingGame() {
         System.out.println("Are you sure you want to leave the game? [Yes/No]");
         selectedOption=getSelectedOption();
